@@ -1,14 +1,14 @@
-require "./person.rb"
+# frozen_string_literal: true
+
+require './person'
 
 class Student < Person
-    def initialize(name = "Unknown", age, parent_permission = true, classroom)
-        @id = Random.rand(1..1000)
-        @name = name
-        @age = age
-        @parent_permission = parent_permission
-        @classroom = classroom
-    end
+  def initialize(name, age, parent_permission, classroom)
+    super(name, age, parent_permission)
+    @classroom = classroom
+  end
 
-    def play_hooky
-        "¯\(ツ)/¯"
-    end
+  def play_hooky
+    "¯\(ツ)/¯"
+  end
+end
