@@ -1,6 +1,3 @@
-# frozen_string_literal: true
-
-# this is a class for any person
 class Person
   def initialize(age, name = 'Unknown', parent_permission: true)
     @id = Random.rand(1..1000)
