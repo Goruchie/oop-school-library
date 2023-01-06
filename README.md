@@ -55,6 +55,14 @@ Imagine that you are the librarian of OOP University, and you need a tool to rec
   </ul>
 </details>
 
+### Key Features <a name="key-features"></a>
+
+- **Add_new_students_or_teachers.**
+- **Add_new_books.**
+- **Save_records_of_who_borrowed_a_given_book_and_when.**
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 
 <!-- GETTING STARTED -->
@@ -99,11 +107,15 @@ Install this project with:
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-### Key Features <a name="key-features"></a>
+<!-- FUTURE FEATURES -->
 
-- **Add_new_students_or_teachers.**
-- **Add_new_books.**
-- **Save_records_of_who_borrowed_a_given_book_and_when.**
+## 🔭 Future Features <a name="future-features"></a>
+
+> Describe 1 - 3 features you will add to the project.
+
+- [ ] **[Set_up_associations.]**
+- [ ] **[add_basic_UI.]**
+- [ ] **[Refactor_the_code]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
