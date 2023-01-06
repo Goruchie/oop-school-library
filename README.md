@@ -1,10 +1,5 @@
 <a name="readme-top"></a>
 
-<div align="center">
-  <!-- You are encouraged to replace this logo with your own! Otherwise you can also remove it. -->
-  <img src="murple_logo.png" alt="logo" width="140"  height="auto" />
-  <br/>
-
   <h3><b>School Library</b></h3>
 
 </div>
@@ -57,6 +52,8 @@
   </ul>
 </details>
 
+
+
 <!-- GETTING STARTED -->
 
 ## 💻 Getting Started <a name="getting-started"></a>
@@ -96,6 +93,16 @@ Install this project with:
 - GitHub: [@Goruchie](https://github.com/Goruchie)
 - Twitter: [@twitterhandle](https://twitter.com/Goruchie2)
 - LinkedIn: [LinkedIn](https://linkedin.com/in/marcosgualtero)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+### Key Features <a name="key-features"></a>
+
+> Describe between 1-3 key features of the application.
+
+- **[Add_new_students_or_teachers.]**
+- **[Add_new_books.]**
+- **[Save_records_of_who_borrowed_a_given_book_and_when.]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
