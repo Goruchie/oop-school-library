@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require './person'
-
+# this is a class for any Teacher
 class Teacher < Person
   def initialize(name, age, parent_permission, specialization)
     super(name, age, parent_permission)
