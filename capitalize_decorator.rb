@@ -5,7 +5,7 @@ class CapitalizeDecorator < Person
     super(nameable)
   end
 
-  def correct_name()
+  def correct_name
     @nameable.correct_name.upcase
   end
 end

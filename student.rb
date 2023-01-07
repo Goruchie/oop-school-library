@@ -4,7 +4,7 @@ class Student < Person
   attr_accessor :classroom
 
   def initialize(age, name, classroom, nameable = 'Unknow', parent_permission: true)
-    super(age, name, nameable, parent_permission: parent_permission)
+    super(age, name, nameable, parent_permission:)
     @classroom = classroom.label
   end
 

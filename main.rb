@@ -6,7 +6,7 @@ require './classroom'
 require './app'
 class Main
   include OPTIONS
-  def initialize()
+  def initialize
     @books = []
     @students = []
     @teachers = []
@@ -14,7 +14,7 @@ class Main
     @rentals = []
   end
 
-  def entrimessage()
+  def entrimessage
     options = [
       'List all books',
       'List all people',
