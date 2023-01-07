@@ -113,9 +113,9 @@ Install this project with:
 
 > Describe 1 - 3 features you will add to the project.
 
-- [ ] **[Set_up_associations.]**
 - [ ] **[add_basic_UI.]**
 - [ ] **[Refactor_the_code]**
+- [ ] **[Preserve_data]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
