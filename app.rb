@@ -68,7 +68,7 @@ class App
 
     has_permission = permission?
 
-    student = Student.new(classroom, age, name:, parent_permission: has_permission)
+    student = Student.new(classroom, age, name: name, parent_permission: has_permission)
     @people << student unless @people.include?(student)
 
     puts "\n Student '#{name}' aged '#{age}' with the classroom '#{classroom}' created Successfully 👍"
@@ -84,7 +84,7 @@ class App
     print 'Specialization: '
     specialization = gets.chomp
 
-    teacher = Teacher.new(specialization, age, name:)
+    teacher = Teacher.new(specialization, age, name: name)
     @people << teacher unless @people.include?(teacher)
 
     puts "\n Teacher '#{name}' aged '#{age}' with the specialization '#{specialization}' created Successfully 👍"
