@@ -25,7 +25,6 @@ class App
   def run
     puts 'Welcome to School Library App!\n'
     loop do
-      puts ''
       puts 'Please choose an option by entering a number:'
       puts '1 - List all books'
       puts '2 - List all people'
@@ -35,7 +34,6 @@ class App
       puts '6 - List all rentals for a given person id'
       puts '7 - Exit'
       option = gets.chomp.to_i
-
       menu_item = MENU[option]
       if menu_item == :exit
         puts 'Thank you for using this App!'
