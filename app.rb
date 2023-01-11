@@ -33,8 +33,7 @@ class App
       puts '5 - Create a rental'
       puts '6 - List all rentals for a given person id'
       puts '7 - Exit'
-      option = gets.chomp.to_i
-      menu_item = MENU[option]
+      menu_item = MENU[gets.chomp.to_i]
       if menu_item == :exit
         puts 'Thank you for using this App!'
         break
