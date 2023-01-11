@@ -94,7 +94,7 @@ class App
     else
       puts 'Invalid permission input'
     end
-    student = Student.new(age, name, parent_permission: parent_permission)
+    student = Student.new(age, name, parent_permission:)
     @people.push(student)
     puts 'Person Created successfully'
   end

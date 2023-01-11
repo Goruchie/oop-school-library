@@ -9,7 +9,7 @@ module Data
           class: person.class, Name: person.name, ID: person.id, Age: person.age,
           parent_permission: person.parent_permission,
           specialization: (person.specialization if person.instance_of?(Teacher)),
-          index: index
+          index:
         }
       end
       file.write(JSON.generate(people))
@@ -20,7 +20,7 @@ module Data
     File.open('books.json', 'w') do |file|
       books = @books.each_with_index.map do |book, index|
         {
-          title: book.title, author: book.author, index: index
+          title: book.title, author: book.author, index:
         }
       end
       file.write(JSON.generate(books))
