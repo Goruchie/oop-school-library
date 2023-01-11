@@ -105,6 +105,11 @@ Install this project with:
 - Twitter: [@twitterhandle](https://twitter.com/Goruchie2)
 - LinkedIn: [LinkedIn](https://linkedin.com/in/marcosgualtero)
 
+👤 **Author2**
+
+- GitHub: [@Starmindz](https://github.com/StarMindz)
+- LinkedIn: [Stanley Nnamani](https://www.linkedin.com/in/stanley-nnamani/)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- FUTURE FEATURES -->
