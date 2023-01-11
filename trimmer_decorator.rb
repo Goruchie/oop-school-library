@@ -1,17 +1,7 @@
-require './person'
+require './base_decorator'
 
-class TrimmerDecorator < Person
-  def initialize(nameable)
-    @nameable = nameable
-    super(nameable)
-  end
-
+class TrimmerDecorator < Decorator
   def correct_name
-    return @nameable.correct_name.slice(0, 10) if @nameable.correct_name.length > 10
-
-    @nameable.correct_name
+    @nameable.correct_name[0...10]
   end
 end
-person = Person.new('jose juan zepeda Romero', 10, 'juan', parent_permission: false)
-trimer = TrimmerDecorator.new(person)
-puts trimer.correct_name
