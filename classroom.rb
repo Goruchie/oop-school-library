@@ -1,6 +1,4 @@
-require_relative './student'
-
-class ClassRoom
+class Classroom
   attr_accessor :label
   attr_reader :students
 
@@ -9,8 +7,8 @@ class ClassRoom
     @students = []
   end
 
-  def addstudent(student)
-    @students.push(student)
-    student.classroom = @label
+  def add_student(student)
+    @students.push(student) unless @students.include?(student)
+    student.classroom = self
   end
 end

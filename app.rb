@@ -1,133 +1,147 @@
-module STUDENTTEACHER
-  def student_option
-    print 'Age '
-    age = gets.chomp.to_i
-    print 'Name '
-    name = gets.chomp!
-    print 'Has the parent permission [Y/N]'
-    inputpermission = gets.chomp!
+require './student'
+require './teacher'
+require './book'
+require './rental'
+require 'json'
+require './data_stored'
+class App
+  include Data
+  MENU = {
+    1 => :list_books,
+    2 => :list_people,
+    3 => :create_people,
+    4 => :create_book,
+    5 => :create_rental,
+    6 => :list_rentals,
+    7 => :exit
+  }.freeze
 
-    case inputpermission.downcase
-    when 'y'
-      parent = true
-    when 'n'
-      parent = false
-    else
-      puts 'Error selectc the correct option'
+  def initialize
+    @books = read_books
+    @people = read_people
+    @rentals = read_rentals
+  end
+
+  def run
+    puts 'Welcome to School Library App!\n'
+    loop do
+      puts 'Please choose an option by entering a number:'
+      puts '1 - List all books'
+      puts '2 - List all people'
+      puts '3 - Create a person'
+      puts '4 - Create a book'
+      puts '5 - Create a rental'
+      puts '6 - List all rentals for a given person id'
+      puts '7 - Exit'
+      menu_item = MENU[gets.chomp.to_i]
+      if menu_item == :exit
+        puts 'Thank you for using this App!'
+        break
+      elsif menu_item
+        send(menu_item)
+      else
+        puts 'Invalid menu option'
+      end
     end
-    @students << Student.new(age, name, ClassRoom.new(''), '', parent_permission: parent)
-    @people << Student.new(age, name, ClassRoom.new(''), '', parent_permission: parent)
-    puts 'Student added successfully'
   end
 
-  def teacher_option
-    print 'Age '
-    age = gets.chomp.to_i
-    print 'Name '
-    name = gets.chomp!
-    print 'Especiality '
-    speciality = gets.chomp!
-
-    @teachers << Teacher.new(age, name, speciality)
-    @people << Teacher.new(age, name, speciality)
-    puts 'Techaer added successfully'
-  end
-end
-
-module OPTIONS
-  include STUDENTTEACHER
-  def option1
+  def list_books
     if @books.empty?
-      puts 'There are not books added'
+      puts 'Books not created yet'
     else
-      puts 'Books'
-      @books.each do |element|
-        puts "Title  #{element.title} Author #{element.author}"
-      end
+      @books.each { |book| puts "Title: #{book.title}, Author: #{book.author}" }
     end
   end
 
-  def option2
-    if @teachers.empty? && @students.empty?
-      puts 'There are not people added'
+  def list_people
+    if @people.empty?
+      puts 'People not created yet'
     else
-      @students.each do |element|
-        agep = element.age.to_s
-        puts "[Student: ] Name: #{element.name} ID:  #{element.id} Age: #{agep}"
-      end
-      @teachers.each do |element|
-        agep = element.age.to_s
-        puts "[Teacher: ] Name: #{element.name} ID: #{element.id} Age: #{agep}"
-      end
+      @people.each { |people| puts "[#{people.class}] Name: #{people.name}, ID: #{people.id}, Age: #{people.age}" }
     end
   end
 
-  def option3
-    puts "Do you want to create a student (1) or a teacher (2)? [
-      Input the number]: "
-    @personoption = gets.chomp.to_i
-
-    case @personoption
+  def create_people
+    print 'Do you want to create a student (1) or a teacher (2)? [Input the number]: '
+    option = gets.chomp.to_i
+    case option
     when 1
-      student_option
+      create_student
     when 2
-      teacher_option
+      create_teacher
     else
-      puts 'person number incorrect choose the options again'
+      puts 'Invalid choice'
     end
   end
 
-  def option4
-    print 'Title '
-    title = gets.chomp!
-    print 'Author '
-    author = gets.chomp!
-    @books << Book.new(title, author)
+  def create_student
+    print 'Age: '
+    age = gets.chomp.to_i
+    print 'Name: '
+    name = gets.chomp.to_s
+    print 'Has parent permission? [Y/N]: '
+    parent_permission = gets.chomp.downcase
+    case parent_permission
+    when 'y'
+      parent_permission = true
+    when 'n'
+      parent_permission = false
+    else
+      puts 'Invalid permission input'
+    end
+    student = Student.new(age, name, parent_permission: parent_permission)
+    @people.push(student)
+    puts 'Person Created successfully'
+  end
+
+  def create_teacher
+    print 'Age: '
+    age = gets.chomp.to_i
+    print 'Name: '
+    name = gets.chomp.to_s
+    print 'Specialization: '
+    specialization = gets.chomp.to_s
+
+    teacher = Teacher.new(specialization, age, name)
+    @people.push(teacher)
+    puts 'Person created successfully'
+  end
+
+  def create_book
+    print 'Title: '
+    title = gets.chomp
+    print 'Author: '
+    author = gets.chomp
+    book = Book.new(title, author)
+    @books.push(book)
+
     puts 'Book created successfully'
   end
 
-  def option5
-    puts 'Select a book frmo the following list by number'
-    @books.each_with_index do |element, index|
-      puts "#{index}) Title  #{element.title} Author #{element.author}"
-    end
-    bookselected = gets.chomp.to_i
+  def create_rental
+    puts 'Select a book from the following list by number'
+    @books.each_with_index { |book, index| puts "#{index}) Title: #{book.title}, Author: #{book.author}" }
+    book_index = gets.chomp.to_i
+
     puts 'Select a person from the following list by number (not id)'
-    @people.each_with_index do |element, index|
-      agep = element.age.to_s
-      typeo = element.class.to_s
-      puts "#{index}) #{typeo} Name: #{element.name} ID:  #{element.id} Age: #{agep}"
+    @people.each_with_index do |people, index|
+      puts "#{index}) [people.class] Name: #{people.name}, ID: #{people.id}, Age: #{people.age}"
     end
-    personselected = gets.chomp.to_i
-    puts 'Set the current date'
-    date = gets.chomp!
+    people_index = gets.chomp.to_i
+    print 'Date: '
+    date = gets.chomp
+    rental = Rental.new(date, @books[book_index], @people[people_index])
+    @rentals << rental unless @rentals.include?(rental)
     puts 'Rental created successfully'
-    rentalelem = Rental.new(date)
-    rentalelem.book = @books[bookselected]
-    rentalelem.person = @people[personselected]
-    @rentals << rentalelem
-    puts ' '
   end
 
-  def option6
-    @people.each do |element|
-      typeo = element.class.to_s
-      puts "#{typeo}Name: #{element.name} ID:  #{element.id}"
-    end
+  def list_rentals
+    print 'ID of person: '
+    person_id = gets.chomp.to_i
+    puts 'Rentals: '
 
-    puts 'Type the id of the people: '
-    idselected = gets.chomp!
-    puts ' '
-    @rentals.each do |element|
-      if element.person.id == idselected
-        puts "Date #{element.date}, Book #{element.book.title} by #{element.book.author}"
-      else
-        puts 'These person does not have any rentals'
-      end
+    @rentals.select do |rental|
+      puts "Date: #{rental.date}, Book #{rental.book.title} by #{rental.person.name}" if rental.person.id == person_id
     end
-  end
-
-  def option7
-    puts 'Thanks for visiting this app'
   end
 end
